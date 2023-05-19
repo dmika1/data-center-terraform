@@ -16,7 +16,10 @@
 # AWS_ACCESS_KEY_ID="123dsa321asd"
 
 FROM ubuntu:22.04
+USER root
 
+RUN sed -i -e 's/^APT/# APT/' -e 's/^DPkg/# DPkg/' \
+      /etc/apt/apt.conf.d/docker-clean
 RUN apt update --allow-insecure-repositories \
     && apt install -y gnupg software-properties-common curl unzip \
     && curl -fsSL https://apt.releases.hashicorp.com/gpg | apt-key add - \
