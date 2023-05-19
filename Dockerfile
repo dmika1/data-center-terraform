@@ -15,13 +15,13 @@
 # AWS_SECRET_ACCESS_KEY="asd123asd123"
 # AWS_ACCESS_KEY_ID="123dsa321asd"
 
-FROM ubuntu:18.04
+FROM ubuntu:22.04
 
-RUN apt-get update \
+RUN apt-get update --allow-insecure-repositories \
     && apt-get install -y gnupg software-properties-common curl unzip \
     && curl -fsSL https://apt.releases.hashicorp.com/gpg | apt-key add - \
     && apt-add-repository "deb [arch=amd64] https://apt.releases.hashicorp.com $(lsb_release -cs) main" \
-    && apt-get update && apt-get install -y terraform
+    && apt-get update --allow-insecure-repositories && apt-get install -y terraform
 
 RUN curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 \
     && chmod 700 get_helm.sh \
