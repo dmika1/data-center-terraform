@@ -17,11 +17,11 @@
 
 FROM ubuntu:22.04
 
-RUN apt-get update --allow-insecure-repositories \
-    && apt-get install -y gnupg software-properties-common curl unzip \
+RUN apt update --allow-insecure-repositories \
+    && apt install -y gnupg software-properties-common curl unzip \
     && curl -fsSL https://apt.releases.hashicorp.com/gpg | apt-key add - \
     && apt-add-repository "deb [arch=amd64] https://apt.releases.hashicorp.com $(lsb_release -cs) main" \
-    && apt-get update --allow-insecure-repositories && apt-get install -y terraform
+    && apt update --allow-insecure-repositories && apt install -y terraform
 
 RUN curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 \
     && chmod 700 get_helm.sh \
